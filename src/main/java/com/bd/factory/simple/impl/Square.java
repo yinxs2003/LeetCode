@@ -1,6 +1,6 @@
-package com.bd.simplefactory.impl;
+package com.bd.factory.simple.impl;
 
-import com.bd.simplefactory.Shape;
+import com.bd.factory.simple.Shape;
 
 /**
  * @author xupeng

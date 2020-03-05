@@ -1,4 +1,4 @@
-package com.bd.simplefactory;
+package com.bd.factory.simple;
 
 /**
  * @author xupeng
