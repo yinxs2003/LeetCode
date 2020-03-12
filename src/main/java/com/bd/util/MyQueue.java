@@ -43,6 +43,14 @@ public class MyQueue<Item> implements Iterable<Item> {
     return N;
   }
 
+  public Item dequeue() {
+
+    Node oldFirst = first;
+    Item data = oldFirst.data;
+    first = first.next;
+    return data;
+  }
+
   public void enqueue(Item item) {
     if (N == 0) {
       last = new Node();
@@ -64,9 +72,10 @@ public class MyQueue<Item> implements Iterable<Item> {
     queue.enqueue(3);
     queue.enqueue(3);
 
+    System.out.println("dequeue:" + queue.dequeue());
 
 
-    for(Integer num : queue){
+    for (Integer num : queue) {
       System.out.println(num);
     }
   }
