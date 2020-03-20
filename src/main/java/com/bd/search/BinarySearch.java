@@ -10,19 +10,18 @@ public class BinarySearch {
     int hi = arr.length - 1;
 
     while (lo < hi) {
-      int mid = lo + (hi - lo) / 2;
-      if (key < arr[mid]) hi = mid - 1;
-      if (key > arr[mid]) lo = mid + 1;
+      int mid = (hi + lo) / 2;
+      if (key < arr[mid]) hi = mid;
+      if (key > arr[mid]) lo = mid;
       if (key == arr[mid]) return mid;
-      else return -1;
-
     }
     return -1;
   }
 
   public static void main(String[] args) {
-    int[] arr = {1, 2, 3, 4, 5, 6};
-    int index = BinarySearch.rank(3, arr);
+    int[] arr = {12, 33, 44, 55};
+
+    int index = BinarySearch.rank(44, arr);
     System.out.println(String.format("index: %s", index));
   }
 }
