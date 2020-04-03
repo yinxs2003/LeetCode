@@ -30,15 +30,15 @@ public class BST<Key extends Comparable<Key>, Value> {
   }
 
   public Value get(Key key) {
-    return get(root, key);
+    return get(root, key).val;
   }
 
-  private Value get(Node x, Key key) {
+  private Node get(Node x, Key key) {
     if (x == null) return null;
     int cmp = key.compareTo(x.key);
     if (cmp < 0) return get(x.left, key);
     else if (cmp > 0) return get(x.right, key);
-    else return x.val;
+    else return x;
   }
 
   public void put(Key key, Value val) {
@@ -62,21 +62,83 @@ public class BST<Key extends Comparable<Key>, Value> {
   private void print(Node x) {
     if (x == null) return;
     print(x.left);
-    System.out.println(x.key);
+    System.out.print(x.key + " ");
     print(x.right);
+  }
+
+  public Key min() {
+    return min(root).key;
+  }
+
+  private Node min(Node x) {
+    if (x.left == null) return x;
+    return min(x.left);
+  }
+
+  public Key max() {
+    return max(root).key;
+  }
+
+  private Node max(Node x) {
+    if (x.right == null) return x;
+    return max(x.right);
+  }
+
+  public Key floor(Key key) {
+
+    Node t = floor(root, key);
+    if (t == null) return null;
+    return t.key;
+  }
+
+  private Node floor(Node x, Key key) {
+    if (x == null) return null;
+    int cmp = key.compareTo(x.key);
+    if (cmp < 0) return x.left;
+    else if (cmp == 0) return x;
+    else {
+      Node t = floor(x.right, key);
+      if (t != null) return t;
+      return x;
+    }
+  }
+
+  public Key ceiling(Key key) {
+    return ceiling(root, key).key;
+  }
+
+  private Node ceiling(Node x, Key key) {
+    if (x == null) return null;
+    int cmp = key.compareTo(x.key);
+    if (cmp > 0) return x.right;
+    else if (cmp == 0) return x;
+    else {
+      Node t = ceiling(x.left, key);
+      if (t != null) return t;
+      return x;
+    }
   }
 
   public static void main(String[] args) {
     BST bstTree = new BST();
     bstTree.put(1, 1);
-    bstTree.put(2, 2);
     bstTree.put(3, 3);
-    bstTree.put(4, 4);
+    bstTree.put(4, 3);
+
+    bstTree.put(11, -4);
+    bstTree.put(6, -4);
+    bstTree.put(2, 2);
+
     bstTree.print();
     int size = bstTree.size();
     System.out.println(String.format("size:%s", size));
 
-    System.out.println(bstTree.get(3));
+    System.out.println(bstTree.get(2));
+    System.out.println(bstTree.min());
+    System.out.println(bstTree.max());
 
+    System.out.println(bstTree.floor(2));
+
+    System.out.println(String.format("ceiling:%s", bstTree.ceiling(3)));
   }
 }
