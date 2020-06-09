@@ -7,15 +7,15 @@ import java.util.Arrays;
  * @date: 18/03/2020
  */
 public class QuickSort {
-  public void sort(int[] arr, int lo, int hi) {
-    System.out.println(Arrays.toString(arr));
+  public static void sort(int[] arr, int lo, int hi) {
+//    System.out.println(Arrays.toString(arr));
     if (lo >= hi) return;
     int j = partition(arr, lo, hi);
     sort(arr, lo, j - 1);
     sort(arr, j + 1, hi);
   }
 
-  public int partition(int[] arr, int lo, int hi) {
+  private static int partition(int[] arr, int lo, int hi) {
     int i = lo;
     int j = hi + 1;
     while (true) {
@@ -28,7 +28,7 @@ public class QuickSort {
     return j;
   }
 
-  public void exch(int[] arr, int i, int j) {
+  private static void exch(int[] arr, int i, int j) {
     int tmp = arr[i];
     arr[i] = arr[j];
     arr[j] = tmp;
@@ -36,8 +36,7 @@ public class QuickSort {
 
   public static void main(String[] args) {
     int[] arr = {6, 4, 5, 3, 22, 1, -1};
-    QuickSort quickSort = new QuickSort();
-    quickSort.sort(arr, 0, arr.length - 1);
+    sort(arr, 0, arr.length - 1);
     System.out.println(Arrays.toString(arr));
   }
 }
